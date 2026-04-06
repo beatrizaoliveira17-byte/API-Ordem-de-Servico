@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 /**
  *
@@ -21,22 +24,22 @@ public class Cliente {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nome;
-    private String email;
     
-    @Column(name = "telefone")
-    private String fone;
-
-    public Cliente() {
-        // Construtor Default
-    }
-
-    public Cliente(long id, String nome, String email, String fone) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.fone = fone;
-    }
+   @NotBlank
+   @Size(max = 60)
+   private String nome;
+   
+   @NotBlank
+   @Email
+   @Size(max = 255)
+   private String email;
+   
+   @NotBlank
+   @Email
+   @Size(max = 255)
+   private String fone;
+   
+    
 
     public long getId() {
         return id;
