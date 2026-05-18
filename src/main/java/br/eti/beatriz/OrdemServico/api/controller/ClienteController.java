@@ -1,5 +1,6 @@
 package br.eti.beatriz.OrdemServico.api.controller;
 
+import br.eti.beatriz.OrdemServico.domain.exception.ClienteService;
 import br.eti.beatriz.OrdemServico.domain.model.Cliente;
 import br.eti.beatriz.OrdemServico.repository.ClienteRepository;
 import jakarta.persistence.EntityManager;
@@ -31,6 +32,8 @@ public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+    
+    private ClienteService clienteService;
 
     @GetMapping("/clientes")
     public List<Cliente> listas() {
@@ -53,7 +56,8 @@ public class ClienteController {
     @PostMapping("/clientes")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-        return clienteRepository.save(cliente);
+        
+        return clienteRepository.save (cliente);
     }
 
     @PutMapping("/clientes/{clienteID}")
